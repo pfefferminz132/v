@@ -1,0 +1,33 @@
+#! /usr/bin/env dash
+
+#set -x
+module=${1:-math}
+body=$2
+file=${3:-~/tmp/exp.v}
+p=println
+#############################################################
+p() {
+	arg=$1 
+	echo "println($arg)" 
+}
+#############################################################
+pn() {
+	arg=$1 
+	echo "print($arg.str())" 
+}
+#############################################################
+cat <<-EOF > $file
+	import $module
+	fn p(arg string) { println( arg ) }
+	fn pi(arg int) { println( arg ) }
+//	fn pni(arg int) { print( arg.int() ) }
+//	fn pns(arg string) { print( arg.str() ) }
+	fn ep(arg string) { eprintln(arg)}
+	///////////////////////////////////////
+	fn main() {
+		$body
+	}
+EOF
+
+~/bin/v ${file} && ${file%%.v} || echo '[1;31msorry, did not compile[0m'
+#rm ${file:t} ${file}
