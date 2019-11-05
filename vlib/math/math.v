@@ -76,8 +76,8 @@ pub fn cbrt(a f64) f64 {
 	return C.cbrt(a)
 }
 
-// ceil returns the nearest integer greater or equal to the provided value.
-pub fn ceil(a f64) int {
+// ceil returns the nearest float 64bit greater or equal to the provided value.
+pub fn ceil(a f64) f64 {
 	return C.ceil(a)
 }
 
@@ -177,7 +177,7 @@ pub fn factorial(n int) i64 {
 }
 */ 
 
-// floor returns the nearest integer lower or equal of the provided value.
+// floor returns the nearest floating-point 64bit lower or equal of the provided value.
 pub fn floor(a f64) f64 {
 	return C.floor(a)
 }
